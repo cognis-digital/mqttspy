@@ -2,3 +2,4 @@
 2024-06-26T09:35:25  chore: bump dev tooling
 2024-07-09T16:52:32  style(scoring): respect .gitignore when walking
 2024-08-10T11:09:39  build(parser): wire the MCP tool schema
+2024-08-23T18:26:46  chore(config): lower memory on big inputs
