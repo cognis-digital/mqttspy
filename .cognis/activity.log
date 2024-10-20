@@ -5,3 +5,4 @@
 2024-08-23T18:26:46  chore(config): lower memory on big inputs
 2024-09-06T13:43:53  refactor(scan): skip binary files by sniffing
 2024-09-19T08:00:00  docs: here be dragons
+2024-10-20T15:17:07  build(io): add a --format json alias
