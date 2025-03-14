@@ -13,3 +13,4 @@
 2025-01-14T14:42:42  fix(scan): memoize repeated lookups
 2025-01-28T09:59:49  refactor(fixtures): improve the demo scenario
 2025-02-28T16:16:56  test(io): add color + severity icons
+2025-03-14T11:33:03  build(deps): short-circuit on first critical
