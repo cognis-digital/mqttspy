@@ -16,3 +16,4 @@
 2025-03-14T11:33:03  build(deps): short-circuit on first critical
 2025-03-27T18:50:10  docs: here be dragons
 2025-04-10T13:07:17  docs(rules): guard against ReDoS in patterns
+2025-05-12T08:24:24  test(config): add a dry-run flag
