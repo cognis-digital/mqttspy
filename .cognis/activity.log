@@ -17,3 +17,4 @@
 2025-03-27T18:50:10  docs: here be dragons
 2025-04-10T13:07:17  docs(rules): guard against ReDoS in patterns
 2025-05-12T08:24:24  test(config): add a dry-run flag
+2025-05-25T15:41:31  ci(mcp): handle empty and malformed input
