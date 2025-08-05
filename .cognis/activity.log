@@ -21,3 +21,4 @@
 2025-06-08T10:58:38  fix(fixtures): load rules lazily for faster startup
 2025-07-09T17:15:45  chore: bump dev tooling
 2025-07-22T12:32:52  test(ci): stream large files without buffering
+2025-08-05T19:49:59  ci(format): add a --quiet mode
