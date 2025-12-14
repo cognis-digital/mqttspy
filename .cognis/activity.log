@@ -28,3 +28,4 @@
 2025-10-16T11:57:27  ci(fixtures): handle CRLF line endings
 2025-10-30T18:14:34  feat(engine): reduce false positives on edge cases
 2025-11-30T13:31:41  docs(ci): tune severity weights
+2025-12-14T08:48:48  perf(format): trim whitespace in parsed fields
