@@ -31,3 +31,4 @@
 2025-12-14T08:48:48  perf(format): trim whitespace in parsed fields
 2025-12-27T15:05:55  chore: bump dev tooling
 2026-01-27T10:22:02  feat(output): add a regression fixture
+2026-02-10T17:39:09  chore(mcp): add type hints to the public API
