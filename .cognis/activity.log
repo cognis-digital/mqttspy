@@ -35,3 +35,4 @@
 2026-02-24T12:56:16  perf(cache): normalize unicode before matching
 2026-03-10T19:13:23  style(engine): cover the multiline case
 2026-04-10T14:30:30  docs: here be dragons
+2026-04-23T09:47:37  chore(detect): improve error messages with context
