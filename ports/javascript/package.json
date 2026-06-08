@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/mqttspy",
+  "version": "0.2.0",
+  "description": "JavaScript port of mqttspy (Cognis Neural Suite)",
+  "bin": {
+    "mqttspy": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
