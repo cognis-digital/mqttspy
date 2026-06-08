@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: mqttspy, labels: { app: mqttspy } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: mqttspy } }
+  template:
+    metadata: { labels: { app: mqttspy } }
+    spec:
+      containers:
+        - name: mqttspy
+          image: ghcr.io/cognis-digital/mqttspy:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: mqttspy }
+spec:
+  selector: { app: mqttspy }
+  ports: [{ port: 80, targetPort: 8000 }]
