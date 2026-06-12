@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-mqttspy
+pip install "git+https://github.com/cognis-digital/mqttspy.git"
 mqttspy scan .            # → prioritized findings in seconds
 ```
 
@@ -50,7 +50,7 @@ Shodan-bait — 'I found 40k open brokers leaking door-lock state' is evergreen 
 ## Quick start
 
 ```bash
-pip install cognis-mqttspy
+pip install "git+https://github.com/cognis-digital/mqttspy.git"
 mqttspy --version
 mqttspy scan .                       # scan current project
 mqttspy scan . --format json         # machine-readable

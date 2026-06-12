@@ -6,7 +6,7 @@ import binascii
 import json
 import re
 from dataclasses import dataclass, field, asdict
-from typing import Any, Iterable
+from typing import Iterable
 
 # Severity ordering for sorting/exit decisions.
 _SEVERITY_RANK = {"high": 3, "medium": 2, "low": 1, "info": 0}
