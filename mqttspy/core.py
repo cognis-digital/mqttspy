@@ -216,7 +216,7 @@ _SECRET_PATTERNS: list[tuple[str, str, re.Pattern]] = [
      re.compile(r"[Bb]earer\s+[A-Za-z0-9._~+/-]{20,}=*")),
     ("password_field", "medium",
      re.compile(r"(?i)\b(?:password|passwd|pwd|secret|api[_-]?key|apikey|token)\b"
-                r"\s*[:=]\s*[\"']?([^\s\"',}]{4,})")),
+                r"[\"']?\s*[:=]\s*[\"']?([^\s\"',}]{4,})")),
     ("basic_auth_url", "medium",
      re.compile(r"[a-zA-Z][a-zA-Z0-9+.-]*://[^\s:@/]+:[^\s:@/]+@")),
     ("private_ipv4", "low",
