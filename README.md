@@ -20,6 +20,42 @@ pip install cognis-mqttspy
 mqttspy scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. Install the CLI (Python 3.9+):
+
+   ```bash
+   pip install git+https://github.com/cognis-digital/mqttspy.git
+   ```
+
+2. Scan an NDJSON MQTT capture for topic exposure, unauthenticated writes,
+   and leaked secrets:
+
+   ```bash
+   mqttspy scan capture.ndjson
+   ```
+
+3. Pipe a capture in on stdin and emit JSON for tooling:
+
+   ```bash
+   cat capture.ndjson | mqttspy scan - --format json > mqtt-findings.json
+   ```
+
+4. Control the exit-code gate by minimum severity:
+
+   ```bash
+   mqttspy scan capture.ndjson --fail-on high; echo "exit=$?"
+   ```
+
+5. Wire it into CI to fail on exposed MQTT topics:
+
+   ```yaml
+   - name: mqtt capture scan
+     run: |
+       pip install git+https://github.com/cognis-digital/mqttspy.git
+       mqttspy scan capture.ndjson --format json --fail-on medium
+   ```
+
 ## Contents
 
 - [Why mqttspy?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
