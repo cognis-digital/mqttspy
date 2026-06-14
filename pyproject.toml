@@ -34,3 +34,6 @@ mqttspy = "mqttspy.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["mqttspy"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
