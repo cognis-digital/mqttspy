@@ -127,6 +127,11 @@ def parse_capture(text: str) -> tuple[list[Packet], list[str]]:
             ts = float(ts) if ts is not None else None
         except (TypeError, ValueError):
             ts = None
+        try:
+            qos = int(obj.get("qos", 0) or 0)
+        except (TypeError, ValueError):
+            qos = 0
+            errors.append(f"line {i}: invalid qos value; defaulting to 0")
         packets.append(
             Packet(
                 ts=ts,
@@ -137,7 +142,7 @@ def parse_capture(text: str) -> tuple[list[Packet], list[str]]:
                 username=str(obj.get("username", "")),
                 authenticated=bool(obj.get("authenticated", True)),
                 retain=bool(obj.get("retain", False)),
-                qos=int(obj.get("qos", 0) or 0),
+                qos=qos,
                 line_no=i,
             )
         )
@@ -290,8 +295,16 @@ def _redact(value: str, keep: int = 4, limit: int = 80) -> str:
 # ---------------------------------------------------------------------------
 # Top-level scan
 # ---------------------------------------------------------------------------
+def to_json(report: Report) -> str:
+    """Serialise a Report to a JSON string."""
+    import json as _json
+    return _json.dumps(report.to_dict(), indent=2)
+
+
 def scan(text: str) -> Report:
     """Run the full MQTT exposure scan on a capture string."""
+    if not isinstance(text, str):
+        raise TypeError(f"scan() expects a str, got {type(text).__name__}")
     packets, errors = parse_capture(text)
     topics = enumerate_topics(packets)
     findings = detect_unauth_writes(packets) + detect_secrets(packets)

@@ -81,9 +81,15 @@ def _should_fail(report: Report, fail_on: str) -> bool:
 
 def _read_capture(path: str) -> str:
     if path == "-":
-        return sys.stdin.read()
-    with open(path, "r", encoding="utf-8") as fh:
-        return fh.read()
+        try:
+            return sys.stdin.read()
+        except UnicodeDecodeError as e:
+            raise OSError(f"stdin contains non-UTF-8 data: {e}") from e
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return fh.read()
+    except UnicodeDecodeError as e:
+        raise OSError(f"file is not valid UTF-8: {e}") from e
 
 
 def _render_table(report: Report) -> str:
@@ -141,7 +147,11 @@ def main(argv=None) -> int:
                   file=sys.stderr)
             return 2
 
-        report = scan(text)
+        try:
+            report = scan(text)
+        except Exception as e:  # noqa: BLE001
+            print(f"{TOOL_NAME}: error: scan failed: {e}", file=sys.stderr)
+            return 2
 
         if args.format == "json":
             print(json.dumps(report.to_dict(), indent=2))
