@@ -1,0 +1,3 @@
+$ mqttspy-emit --version
+
+mqttspy 0.1.0

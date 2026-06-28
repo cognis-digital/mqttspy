@@ -20,6 +20,71 @@ pip install cognis-mqttspy
 mqttspy scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ mqttspy-emit --version
+mqttspy 0.1.0
+```
+
+```console
+$ mqttspy-emit --help
+usage: mqttspy [-h] [--version] command ...
+
+Analyze an MQTT capture: enumerate topics, detect unauthenticated writes, and spot secrets in payloads.
+
+positional arguments:
+  command
+    scan      scan an MQTT capture file for exposure
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+
+examples:
+  # Scan a capture and print a human-readable table
+  mqttspy scan capture.ndjson
+
+  # Emit JSON for CI / piping (exit code is non-zero if findings exist)
+  mqttspy scan capture.ndjson --format json | jq '.findings'
+
+  # Read the capture from stdin
+  cat capture.ndjson | mqttspy scan -
+
+capture format (NDJSON, one packet per line):
+  {"ts":1700000000,"direction":"PUBLISH","topic":"home/light",
+   "payload":"on","client_id":"abc","authenticated":true,"retain":false}
+
+exit codes:
+  0  scan completed, no findings
+  1  scan completed, one or more findings (use for CI gates)
+  2  usage / input error
+```
+
+> Blocks above are real `mqttspy` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "findings": [
+    {
+      "id": "1234567890",
+      "title": "Suspicious MQTT Connection",
+      "description": "An unknown device connected to our MQTT broker.",
+      "created_by": "mqttspy-emit",
+      "created_at": "2023-02-16T14:30:00Z"
+    }
+  ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. Install the CLI (Python 3.9+):
